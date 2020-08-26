@@ -24,7 +24,9 @@ class spmisc:
         pass
 
     def plot(self, data):
-        pts = len(data)
+        #pts = len(data)
+        pts = data.size
+        print(pts)
         xaxis = np.linspace(0,pts-1, pts)
         fig = plt.figure()
         ax = fig.add_subplot(111)
