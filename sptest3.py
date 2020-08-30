@@ -1,4 +1,4 @@
 import adfsimulation
 
-s = adfsimulation.adfsimulation(5,10)
+s = adfsimulation.adfsimulation(30,10)
 s.simulation()
