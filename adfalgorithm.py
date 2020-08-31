@@ -1,9 +1,9 @@
+from abc import ABCMeta, abstractmethod
 import numpy as np
 
-class adfalgorithm:
+class adfalgorithm(metaclass=ABCMeta):
     def __init__(self, order):
         self._order = order
-        self._mu = 0.1
         self._wcoef = np.zeros(self._order)
         self._winput = np.zeros(self._order)
 
@@ -14,10 +14,9 @@ class adfalgorithm:
     def initbuffer(self, input):
         self._winput = np.roll(self._winput, 1)
         self._winput[0] = input
-        pass
 
+    @abstractmethod
     def update(self, e):
-        self._wcoef = self._wcoef + self._mu * e * self._winput
         pass
 
     def iteration(self, input, desire):
@@ -27,4 +26,3 @@ class adfalgorithm:
         e = desire - y
         self.update(e)
         return y
-        pass

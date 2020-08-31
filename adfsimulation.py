@@ -1,7 +1,8 @@
 import spconv
-import spmisc 
+import spmisc
 import numpy as np
-import adfalgorithm as algo
+#import adfalgorithm as algo
+import adfnlms as algo
 
 class adfsimulation:
     def __init__(self, order, num):
@@ -10,16 +11,16 @@ class adfsimulation:
         self.conv = spconv.spconv(self._order)
         #self.conv.coef = [0.2, 0.2, 0.2, 0.2, 0.2]
         self.conv.coef = np.random.randn(self._order)
-        self.adf = algo.adfalgorithm(self._order)
+        self.adf = algo.nlmsalgorithm(self._order)
 
     def simulation(self):
-        for n in range(10):
+        for n in range(100):
             input = np.random.randn(1)
             d = self.conv.conv(input)
             self.adf.initbuffer(input)
         #
-        eall = np.zeros(100)
-        for n in range (100):
+        eall = np.zeros(1000)
+        for n in range (1000):
             input = np.random.randn(1)
             d = self.conv.conv(input)
             y = self.adf.iteration(input, d)
