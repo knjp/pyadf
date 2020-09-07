@@ -1,9 +1,6 @@
 import spconv
 import spmisc
 import numpy as np
-#import adfalgorithm as algo
-#import adflms as lms
-#import adfnlms as nlms
 
 class adfsimulation:
     def __init__(self, order, nlen, algos):
@@ -32,9 +29,6 @@ class adfsimulation:
                 y = self._algos[na].iteration(input, d)
                 err = d-y
                 eall[na][n] = err*err
-
-        #print(self.conv.coef)
-        #print(self._algos[0]._wcoef)
         return eall
 
     def simulation(self):
@@ -45,6 +39,5 @@ class adfsimulation:
             eall = eall + es
 
         eall = eall/self._nensemble
-        #print(eall)
         b = spmisc.spmisc()
         b.plotMSE(eall)
