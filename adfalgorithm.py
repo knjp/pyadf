@@ -6,6 +6,7 @@ class adfalgorithm(metaclass=ABCMeta):
         self._order = order
         self._wcoef = np.zeros(self._order)
         self._winput = np.zeros(self._order)
+        self._name = "Adaptive Algorithm"
 
     def initalgorithm(self):
         self._wcoef = np.zeros(self._order)

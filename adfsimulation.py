@@ -2,38 +2,49 @@ import spconv
 import spmisc
 import numpy as np
 #import adfalgorithm as algo
-import adflms as lms
-import adfnlms as nlms
+#import adflms as lms
+#import adfnlms as nlms
 
 class adfsimulation:
-    def __init__(self, order, num):
+    def __init__(self, order, nlen, algos):
         self._order = order
-        self._num = num
+        self._nlen = nlen
         self.conv = spconv.spconv(self._order)
-        #self.conv.coef = [0.2, 0.2, 0.2, 0.2, 0.2]
         self.conv.coef = np.random.randn(self._order)
-        self.adf1 = lms.lmsalgorithm(self._order)
-        self.adf2 = nlms.nlmsalgorithm(self._order)
+        self._algos = algos
+        self._algonum = len(self._algos)
+        self._nensemble = 50
+
+    def ensemble(self):
+        for na in range(self._algonum):
+            self._algos[na].initalgorithm
+        for n in range(2*self._order):
+            input = np.random.randn(1)
+            #d = self.conv.conv(input)
+            for na in range(self._algonum):
+                y = self._algos[na].initbuffer(input)
+
+        eall = np.zeros((self._algonum, self._nlen))
+        for n in range (self._nlen):
+            input = np.random.randn(1)
+            d = self.conv.conv(input) + 0.1 * np.random.randn()
+            for na in range(self._algonum):
+                y = self._algos[na].iteration(input, d)
+                err = d-y
+                eall[na][n] = err*err
+
+        #print(self.conv.coef)
+        #print(self._algos[0]._wcoef)
+        return eall
 
     def simulation(self):
-        for n in range(100):
-            input = np.random.randn(1)
-            d = self.conv.conv(input)
-            self.adf1.initbuffer(input)
-            self.adf2.initbuffer(input)
-        #
-        eall = np.zeros((2, 1000))
-        for n in range (1000):
-            input = np.random.randn(1)
-            d = self.conv.conv(input) + 0.01 * np.random.randn()
-            y = self.adf1.iteration(input, d)
-            err = d-y
-            eall[0][n] = err
-            y = self.adf2.iteration(input, d)
-            err = d-y
-            eall[1][n] = err
+        eall = np.zeros((self._algonum, self._nlen))
+        for i in range(self._nensemble):
+            print('Iteration No. ', i)
+            es = self.ensemble()
+            eall = eall + es
 
+        eall = eall/self._nensemble
+        #print(eall)
         b = spmisc.spmisc()
-        print(self.conv.coef)
-        print(self.adf1._wcoef)
         b.plotMSE(eall)

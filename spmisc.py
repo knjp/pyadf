@@ -47,7 +47,7 @@ class spmisc:
         xaxis = np.linspace(0, pts-1, pts)
         fig = plt.figure()
         ax = fig.add_subplot(111)
-        for i in range(2):
+        for i in range(len(data)):
             plt.plot(xaxis, 10*np.log10(data[i]), label='data', linewidth='2')
         ax.set_ylabel('Amplitude')
         plt.legend(loc='best')
