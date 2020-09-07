@@ -5,6 +5,7 @@ class lmsalgorithm(adfalgorithm.adfalgorithm):
     def __init__(self, order):
         super().__init__(order)
         self._mu = 0.01
+        self._name = "LMS algorithm"
 
 
     def update(self, e):

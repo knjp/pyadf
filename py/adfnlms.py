@@ -5,6 +5,7 @@ class nlmsalgorithm(algo.adfalgorithm):
     def __init__(self, order):
         super().__init__(order)
         self._alpha = 1.0
+        self._name = "NLMS algorithm"
 
 
     def update(self, e):

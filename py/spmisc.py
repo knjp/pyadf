@@ -36,7 +36,7 @@ class spmisc:
         plt.legend(loc='best')
         plt.show()
 
-    def plotMSE(self, data):
+    def plotMSE(self, data, names):
         ddim = data.ndim
         if ddim == 1:
             pts = data.size
@@ -48,7 +48,7 @@ class spmisc:
         fig = plt.figure()
         ax = fig.add_subplot(111)
         for i in range(len(data)):
-            plt.plot(xaxis, 10*np.log10(data[i]), label='data', linewidth='2')
+            plt.plot(xaxis, 10*np.log10(data[i]), label=names[i], linewidth='2')
         ax.set_ylabel('Amplitude')
         plt.legend(loc='best')
         plt.show()

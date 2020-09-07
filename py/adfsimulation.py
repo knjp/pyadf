@@ -3,14 +3,14 @@ import spmisc
 import numpy as np
 
 class adfsimulation:
-    def __init__(self, order, nlen, algos):
+    def __init__(self, order, nlen, algos, ensemble = 50):
         self._order = order
         self._nlen = nlen
         self.conv = spconv.spconv(self._order)
         self.conv.coef = np.random.randn(self._order)
         self._algos = algos
         self._algonum = len(self._algos)
-        self._nensemble = 50
+        self._nensemble = ensemble
 
     def ensemble(self):
         for na in range(self._algonum):
@@ -38,6 +38,10 @@ class adfsimulation:
             es = self.ensemble()
             eall = eall + es
 
+        names =  []
+        for i in range(self._algonum):
+            names.append(self._algos[i]._name)
+
         eall = eall/self._nensemble
         b = spmisc.spmisc()
-        b.plotMSE(eall)
+        b.plotMSE(eall, names)
