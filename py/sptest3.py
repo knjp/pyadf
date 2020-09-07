@@ -1,10 +1,12 @@
+from sys import argv
 import adfsimulation
 import adflms
 import adfnlms
 
+arg = argv[1]
 order = 131
 nlen = 500
-ensemble = 10
+ensemble = int(arg)
 lms = adflms.lmsalgorithm(order)
 lms2 = adflms.lmsalgorithm(order)
 lms2._mu = 0.005

@@ -1,5 +1,6 @@
 function sendToPython(){
-	var python = require('child_process').spawn('python', ['./py/sptest3.py']);
+	var python = require('child_process').spawn('python', ['./py/sptest3.py', input.value]);
+	result.textContent = ""
 	python.stdout.on('data', function(data){
 		console.log("Python response: ", data.toString('utf8'));
 		result.textContent = data.toString('utf8');
