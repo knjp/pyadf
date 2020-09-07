@@ -3,8 +3,8 @@ import adflms
 import adfnlms
 
 order = 131
-nlen = 5000
-ensemble = 100
+nlen = 500
+ensemble = 10
 lms = adflms.lmsalgorithm(order)
 lms2 = adflms.lmsalgorithm(order)
 lms2._mu = 0.005
