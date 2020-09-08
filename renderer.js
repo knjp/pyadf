@@ -1,3 +1,18 @@
+
+var {PythonShell} = require('python-shell');
+
+function testPython(){
+	let options = {
+		mode: 'text',
+		pythonOptions: ['-u'],
+		args: [input.value]
+	}
+	PythonShell.run('py/sptest3.py', options, function(err, result){
+		if(err) throw err;
+		console.log(result)
+	})
+}
+
 function sendToPython(){
 	var python = require('child_process').spawn('python', ['./py/sptest3.py', input.value]);
 	result.textContent = ""
@@ -16,7 +31,8 @@ function sendToPython(){
 }
 
 btn.addEventListener('click', ()=>{
-	sendToPython();
+	// sendToPython();
+	testPython()
 });
 
 btn.dispatchEvent(new Event('click'));

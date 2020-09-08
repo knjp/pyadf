@@ -43,5 +43,6 @@ class adfsimulation:
             names.append(self._algos[i]._name)
 
         eall = eall/self._nensemble
-        b = spmisc.spmisc()
-        b.plotMSE(eall, names)
+        return eall
+        #b = spmisc.spmisc()
+        #b.plotMSE(eall, names)
