@@ -24,7 +24,7 @@ class adfsimulation:
         eall = np.zeros((self._algonum, self._nlen))
         for n in range (self._nlen):
             input = np.random.randn(1)
-            d = self.conv.conv(input) + 0.1 * np.random.randn()
+            d = self.conv.conv(input) + 0.01 * np.random.randn()
             for na in range(self._algonum):
                 y = self._algos[na].iteration(input, d)
                 err = d-y

@@ -31,8 +31,8 @@ function sendToPython(){
 }
 
 btn.addEventListener('click', ()=>{
-	// sendToPython();
-	testPython()
+	sendToPython();
+	// testPython()
 });
 
 btn.dispatchEvent(new Event('click'));

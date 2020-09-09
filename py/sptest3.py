@@ -2,6 +2,7 @@ from sys import argv
 import adfsimulation
 import adflms
 import adfnlms
+import adfrls
 import spmisc
 
 arg = argv[1]
@@ -13,8 +14,9 @@ lms2 = adflms.lmsalgorithm(order)
 lms2._mu = 0.005
 lms2._name = "LMS (0.005)"
 nlms = adfnlms.nlmsalgorithm(order)
+rls = adfrls.rlsalgorithm(order)
 
-algos = [lms, nlms, lms2]
+algos = [lms, nlms, rls]
 s = adfsimulation.adfsimulation(order, nlen, algos, ensemble)
 eall = s.simulation()
 
@@ -23,4 +25,4 @@ for i in range(len(algos)):
     names.append(algos[i]._name)
 
 b = spmisc.spmisc()
-#b.plotMSE(eall, names)
+b.plotMSE(eall, names)
