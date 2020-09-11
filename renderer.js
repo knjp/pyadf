@@ -7,11 +7,12 @@ function testPython(){
 		pythonOptions: ['-u'],
 		args: [input.value]
 	}
-	PythonShell.run('py/sptest3.py', options, function(err, result){
+	PythonShell.run('py/sptest3.py', options, function(err, pyresult){
 		if(err) throw err;
-		console.log(result)
+		tarea.textContent = pyresult
 	})
 }
+
 
 function sendToPython(){
 	var python = require('child_process').spawn('python', ['./py/sptest3.py', input.value]);
@@ -31,8 +32,9 @@ function sendToPython(){
 }
 
 btn.addEventListener('click', ()=>{
-	sendToPython();
-	// testPython()
+	//sendToPython();
+	testPython()
+	//tp()
 });
 
 btn.dispatchEvent(new Event('click'));

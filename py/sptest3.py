@@ -5,7 +5,8 @@ import adfnlms
 import adfrls
 import spmisc
 
-arg = argv[1]
+#arg = argv[1]
+arg = 2
 order = 131
 nlen = 2000
 ensemble = int(arg)
