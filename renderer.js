@@ -1,40 +1,39 @@
 
 var {PythonShell} = require('python-shell');
+PythonShell.defaultOptions = { pythonOptions: ['-u'] };
 
-function testPython(){
+
+function pytest(){
 	let options = {
-		mode: 'text',
-		pythonOptions: ['-u'],
+		puthonOptions: ['-u'],
 		args: [input.value]
 	}
-	PythonShell.run('py/sptest3.py', options, function(err, pyresult){
-		if(err) throw err;
-		tarea.textContent = pyresult
+	let pyshell = new PythonShell('./py/sptest3.py', options);
+ 
+	// sends a message to the Python script via stdin
+	pyshell.send('John');
+	pyshell.on('message', function (message) {
+	  // received a message sent from the Python script (a simple "print" statement)
+	  console.log(message);
+	  tt = tarea.value;
+	  tarea.textContent = tt + message + '\n';
+	  tarea.scrollTop = tarea.scrollHeight;
 	})
-}
 
-
-function sendToPython(){
-	var python = require('child_process').spawn('python', ['./py/sptest3.py', input.value]);
-	result.textContent = ""
-	python.stdout.on('data', function(data){
-		console.log("Python response: ", data.toString('utf8'));
-		result.textContent = data.toString('utf8');
-	});
-
-	python.stderr.on('data', (data) => {
-		console.error(`stderr: ${data}`);
-	});
-
-	python.on('close', (code)=>{
-		console.log(`child process exited with code ${code}`);
+	pyshell.end(function (err,code,signal) {
+		if (err) throw err;
+		ss = ('The exit code was: ' + code + '\n');
+		ss = ss + ('The exit signal was: ' + signal + '\n');
+		ss = ss + ('finished');
+		tt = tarea.value;
+		tarea.textContent = tt + ss + '\n'
+	  	tarea.scrollTop = tarea.scrollHeight;
 	});
 }
 
 btn.addEventListener('click', ()=>{
-	//sendToPython();
-	testPython()
-	//tp()
+	tarea.textContent = '';
+	pytest();
 });
 
 btn.dispatchEvent(new Event('click'));
