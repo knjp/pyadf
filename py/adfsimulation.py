@@ -17,7 +17,8 @@ class adfsimulation:
     def epoch(self):
         self._unknown.initunknown()
         for na in range(self._algonum):
-            self._algos[na].initalgorithm
+            self._algos[na].initalgorithm()
+
         for n in range(2*self._order):
             input = self._unknown.input()
             d = self._unknown.output(input)
@@ -30,8 +31,8 @@ class adfsimulation:
             d = self._unknown.output(input)
             for na in range(self._algonum):
                 y = self._algos[na].iteration(input, d)
-                err = d-y
-                errs[na][n] = err*err
+                e = d-y
+                errs[na][n] = e*e
         return errs
 
     def simulation(self):
@@ -40,12 +41,11 @@ class adfsimulation:
             print('Iteration No. ', i)
             es = self.epoch()
             eall =  eall + es
-
+        
         names =  []
         for i in range(self._algonum):
             names.append(self._algos[i]._name)
 
-        print(self._nensemble)
         eall2 = eall/(self._nensemble)
         print(eall2.shape)
         return eall2

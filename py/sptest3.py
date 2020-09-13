@@ -11,7 +11,7 @@ else:
     arg = 2
 
 order = 31
-nlen = 500
+nlen = 1500
 ensemble = int(arg)
 lms = adflms.lmsalgorithm(order)
 lms._name = "LMS"
@@ -22,7 +22,7 @@ nlms = adfnlms.nlmsalgorithm(order)
 rls = adfrls.rlsalgorithm(order)
 
 #algos = [lms, nlms, lms2]
-algos = [nlms]
+algos = [nlms, lms, lms2, rls]
 s = asim.adfsimulation(order, nlen, algos, ensemble)
 eall = s.simulation()
 
