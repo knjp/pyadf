@@ -41,7 +41,7 @@ class spmisc:
         if ddim == 1:
             pts = data.size
         else:
-            pts = data[1].size
+            pts = data[0].size
         sdata = data.shape
 
         xaxis = np.linspace(0, pts-1, pts)
@@ -49,6 +49,9 @@ class spmisc:
         ax = fig.add_subplot(111)
         for i in range(len(data)):
             plt.plot(xaxis, 10*np.log10(data[i]), label=names[i], linewidth='2')
-        ax.set_ylabel('Amplitude')
+        ax.set_ylabel('Amplitude [dB]')
+        ax.set_xlabel('Iteration n')
+        #plt.xlim(0,1000)
+        #plt.ylim(-50,0)
         plt.legend(loc='best')
         plt.show()
