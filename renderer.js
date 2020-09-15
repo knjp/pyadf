@@ -36,6 +36,9 @@ btn.addEventListener('click', ()=>{
 	pytest();
 });
 
-btn.dispatchEvent(new Event('click'));
+//btn.dispatchEvent(new Event('click'));
 
+quit.addEventListener('click', function(clickEvent) {
+	window.close()
+})
 
