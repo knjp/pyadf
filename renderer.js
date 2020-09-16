@@ -42,3 +42,12 @@ quit.addEventListener('click', function(clickEvent) {
 	window.close()
 })
 
+
+function openChildWindow(){
+	const url = 'child.html';
+	window.open(url, '', 'width=300,height=300')
+}
+
+child.addEventListener('click', function(clickEvent) {
+	openChildWindow()
+})
