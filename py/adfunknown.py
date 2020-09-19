@@ -6,6 +6,10 @@ class adfunknown(metaclass=ABCMeta):
         pass
 
     @abstractmethod
+    def initunknown(self):
+        pass
+
+    @abstractmethod
     def input(self):
         pass
 
