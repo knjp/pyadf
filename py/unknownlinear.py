@@ -15,23 +15,46 @@ class unknown(adfunknown.adfunknown):
         #self._unknown = np.random.randn(self._order)
         self._conv = spconv.spconv(self._order)
         self._conv.coef = self._unknown
-        self.arcoef = 0.85
+        self._arcoef = 0.0
         self.oldx = 0.0
-        self.sigmanoise = 0.01
-        self.sigmax = 1
+        self._snr = 30
+        self._sigmanoise = 0.00
+        self._sigmax = 1
         pass
 
-    def input(self):
-        x = np.random.randn(1) + self.oldx * self.arcoef
-        xi = self.sigmax * (x/np.sqrt(1+self.arcoef))
-        self.oldx = x
-        return xi
+    @property
+    def arcoef(self):
+        return self._arcoef
 
+    @arcoef.setter
+    def arcoef(self, value):
+        if value >= 0 and value < 1:
+            self._arcoef = value
+        else:
+            self._arcoef = 0
+
+    @property
+    def snr(self):
+        return self._snr
+
+    @snr.setter
+    def snr(self, value):
+        self._snr = value
+    
     def initunknown(self):
         self._conv = spconv.spconv(self._order)
         self._conv.coef = self._unknown
+        SNRlinear = 10 ** (self._snr/10)
+        npower = self._sigmax ** 2/SNRlinear
+        self._sigmanoise = np.sqrt(npower)
+
+    def input(self):
+        x = np.random.randn(1) + self.oldx * self._arcoef
+        xi = self._sigmax * (x/np.sqrt(1+self._arcoef))
+        self.oldx = x
+        return xi
 
     def output(self, input):
-        d = self._conv.conv(input) + self.sigmanoise * np.random.randn(1)
+        d = self._conv.conv(input) + self._sigmanoise * np.random.randn(1)
         return d
-            
+           
