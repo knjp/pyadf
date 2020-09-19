@@ -4,22 +4,26 @@ import scipy as sp
 from scipy import signal
 import adfunknown
 
-class unknown(adfunknown.adfunknown):
+class Unknown(adfunknown.ADFunknown):
     def __init__(self, order):
         self._order = order
         taps = order
         edge = [0, 0.25, 0.3, 0.5]
-        gain = [1.0, 0.00]
+        gain1 = [1.0, 0.00]
+        gain2 = [0.0, 1.00]
         #weight = [0.2, 1.0]
-        self._unknown = sp.signal.remez(taps, edge, gain)
+        self._unknown1 = sp.signal.remez(taps, edge, gain1)
+        self._unknown2 = sp.signal.remez(taps, edge, gain2)
         #self._unknown = np.random.randn(self._order)
-        self._conv = spconv.spconv(self._order)
-        self._conv.coef = self._unknown
+        self._conv = spconv.SPconv(self._order)
+        self._conv.coef = self._unknown1
+        self._changetime = 2000
         self._arcoef = 0.0
         self.oldx = 0.0
         self._snr = 30
         self._sigmanoise = 0.00
         self._sigmax = 1
+        self._time = 1
         pass
 
     @property
@@ -42,8 +46,8 @@ class unknown(adfunknown.adfunknown):
         self._snr = value
     
     def initunknown(self):
-        self._conv = spconv.spconv(self._order)
-        self._conv.coef = self._unknown
+        self._conv = spconv.SPconv(self._order)
+        self._conv.coef = self._unknown1
         SNRlinear = 10 ** (self._snr/10)
         npower = self._sigmax ** 2/SNRlinear
         self._sigmanoise = np.sqrt(npower)
@@ -55,6 +59,10 @@ class unknown(adfunknown.adfunknown):
         return xi
 
     def output(self, input):
+        if self._time > self._changetime:
+            self._conv.coef = self._unknown2
+
         d = self._conv.conv(input) + self._sigmanoise * np.random.randn(1)
+        self._time = self._time + 1
         return d
            

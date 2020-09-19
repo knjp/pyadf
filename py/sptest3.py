@@ -5,6 +5,7 @@ import adfnlms
 import adfrls
 import spmisc
 import unknownlinear
+import unknownLTV
 
 if len(argv) == 2 or len(argv) == 3:
     arg = argv[1]
@@ -29,7 +30,7 @@ nlms = adfnlms.NLMSalgorithm(order)
 rls = adfrls.RLSalgorithm(order)
 
 algos = [nlms, lms, lms2, rls]
-unknown = unknownlinear.Unknown(order)
+unknown = unknownLTV.Unknown(order)
 unknown.arcoef = arcoef
 unknown.snr = 50 # SNR in dB
 s = asim.ADFsimulation(order, nlen, algos, unknown, ensemble)
