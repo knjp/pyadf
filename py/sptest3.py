@@ -4,6 +4,7 @@ import adflms
 import adfnlms
 import adfrls
 import spmisc
+import unknownlinear
 
 if len(argv) == 2:
     arg = argv[1]
@@ -14,7 +15,8 @@ order = 31
 nlen = 1500
 ensemble = int(arg)
 lms = adflms.lmsalgorithm(order)
-lms._name = "LMS"
+lms._mu = 0.001
+lms._name = "LMS (0.001)"
 lms2 = adflms.lmsalgorithm(order)
 lms2._mu = 0.005
 lms2._name = "LMS (0.005)"
@@ -23,7 +25,8 @@ rls = adfrls.rlsalgorithm(order)
 
 #algos = [lms, nlms, lms2]
 algos = [nlms, lms, lms2, rls]
-s = asim.adfsimulation(order, nlen, algos, ensemble)
+unknown = unknownlinear.unknown(order)
+s = asim.adfsimulation(order, nlen, algos, unknown, ensemble)
 eall = s.simulation()
 
 names =  []

@@ -1,0 +1,14 @@
+from abc import ABCMeta, abstractmethod
+import numpy as np
+
+class adfunknown(metaclass=ABCMeta):
+    def __init__(self):
+        pass
+
+    @abstractmethod
+    def input(self):
+        pass
+
+    @abstractmethod
+    def output(self, input):
+        pass
