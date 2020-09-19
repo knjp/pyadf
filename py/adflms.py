@@ -1,7 +1,7 @@
 import numpy as np
 import adfalgorithm 
 
-class lmsalgorithm(adfalgorithm.adfalgorithm):
+class LMSalgorithm(adfalgorithm.ADFalgorithm):
     def __init__(self, order):
         super().__init__(order)
         self._mu = 0.01

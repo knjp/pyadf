@@ -1,13 +1,10 @@
-import spconv
 import spmisc
 import numpy as np
 
-class adfsimulation:
+class ADFsimulation:
     def __init__(self, order, nlen, algos, unknown, ensemble = 50):
         self._order = order
         self._nlen = nlen
-        #self.conv = spconv.spconv(self._order)
-        #self.conv.coef = np.random.randn(self._order)
         self._algos = algos
         self._algonum = len(self._algos)
         self._nensemble = ensemble

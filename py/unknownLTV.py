@@ -4,7 +4,7 @@ import scipy as sp
 from scipy import signal
 import adfunknown
 
-class Unknown(adfunknown.ADFunknown):
+class unknown(adfunknown.adfunknown):
     def __init__(self, order):
         self._order = order
         taps = order
@@ -13,7 +13,7 @@ class Unknown(adfunknown.ADFunknown):
         #weight = [0.2, 1.0]
         self._unknown = sp.signal.remez(taps, edge, gain)
         #self._unknown = np.random.randn(self._order)
-        self._conv = spconv.SPconv(self._order)
+        self._conv = spconv.spconv(self._order)
         self._conv.coef = self._unknown
         self._arcoef = 0.0
         self.oldx = 0.0
@@ -42,7 +42,7 @@ class Unknown(adfunknown.ADFunknown):
         self._snr = value
     
     def initunknown(self):
-        self._conv = spconv.SPconv(self._order)
+        self._conv = spconv.spconv(self._order)
         self._conv.coef = self._unknown
         SNRlinear = 10 ** (self._snr/10)
         npower = self._sigmax ** 2/SNRlinear

@@ -1,7 +1,7 @@
 from abc import ABCMeta, abstractmethod
 import numpy as np
 
-class adfunknown(metaclass=ABCMeta):
+class ADFunknown(metaclass=ABCMeta):
     def __init__(self):
         pass
 
