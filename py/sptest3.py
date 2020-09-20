@@ -15,10 +15,10 @@ else:
 if len(argv) == 3:
     arcoef = float(argv[2])
 else:
-    arcoef = 0
+    arcoef = 0.8
 
-order = 31
-nlen = 2500
+order = 131
+nlen = 2000
 ensemble = int(arg)
 lms = adflms.LMSalgorithm(order)
 lms.mu = 0.001
@@ -32,7 +32,8 @@ rls = adfrls.RLSalgorithm(order)
 algos = [nlms, lms, lms2, rls]
 unknown = unknownLTV.Unknown(order)
 unknown.arcoef = arcoef
-unknown.snr = 50 # SNR in dB
+unknown.snr = 30 # SNR in dB
+unknown.changetime = 2500 # SNR in dB
 s = asim.ADFsimulation(order, nlen, algos, unknown, ensemble)
 eall = s.simulation()
 

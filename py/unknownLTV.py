@@ -7,14 +7,8 @@ import adfunknown
 class Unknown(adfunknown.ADFunknown):
     def __init__(self, order):
         self._order = order
-        taps = order
-        edge = [0, 0.25, 0.3, 0.5]
-        gain1 = [1.0, 0.00]
-        gain2 = [0.0, 1.00]
-        #weight = [0.2, 1.0]
-        self._unknown1 = sp.signal.remez(taps, edge, gain1)
-        self._unknown2 = sp.signal.remez(taps, edge, gain2)
-        #self._unknown = np.random.randn(self._order)
+        self._unknown1 = np.random.randn(self._order)
+        self._unknown2 = np.random.randn(self._order)
         self._conv = spconv.SPconv(self._order)
         self._conv.coef = self._unknown1
         self._changetime = 2000
@@ -44,6 +38,15 @@ class Unknown(adfunknown.ADFunknown):
     @snr.setter
     def snr(self, value):
         self._snr = value
+
+    @property
+    def changetime(self):
+        return self._changetime
+
+    @changetime.setter
+    def changetime(self, value):
+        self._changetime = value
+
     
     def initunknown(self):
         self._conv = spconv.SPconv(self._order)
