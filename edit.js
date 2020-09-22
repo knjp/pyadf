@@ -1,5 +1,4 @@
-function initProg(){
-	const initprog = `
+const initprog = `\
 from sys import argv
 import adfsimulation as asim
 import adflms
@@ -46,6 +45,8 @@ for i in range(len(algos)):
 b = spmisc.SPmisc()
 b.plotMSE(eall, names)
 `;
+
+function initProg(){
 	editarea.textContent = initprog;
 }
 
