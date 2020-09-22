@@ -8,7 +8,7 @@ function pytest(){
 		puthonOptions: ['-u'],
 		args: [input.value]
 	}
-	let pyshell = new PythonShell('./py/sptest3.py', options);
+	let pyshell = new PythonShell('./py/z1.py', options);
  
 	// sends a message to the Python script via stdin
 	pyshell.send('John');
@@ -44,8 +44,8 @@ quit.addEventListener('click', function(clickEvent) {
 
 
 function openChildWindow(){
-	const url = 'child.html';
-	window.open(url, '', 'width=300,height=300')
+	const url = 'edit.html';
+	window.open(url, '', 'width=800,height=800')
 }
 
 child.addEventListener('click', function(clickEvent) {

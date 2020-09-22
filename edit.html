@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Parameters</title>
+</head>
+<body>
+    <h1> Edit Program Test</h1>
+	Number of iterations: <input id="input" value="2"></input>
+    <textarea id="editarea" rows="10" cols="100"></textarea><br>
+    <input id="btnedit" type="button" value="Read"></input>
+    <input id="btnwrite" type="button" value="Write"></input>
+    <input id="btnclose" type="button" value="Close"></input>
+
+    <script>
+        require('./edit.js')
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script>
+
+        new Vue({
+            el: '#app'
+        })
+
+</script>
+</body>
+</html>
