@@ -20,28 +20,34 @@ b = spmisc.SPmisc()
 b.plotMSE(eall, names)
 `;
 
-function initProg(){
-
-var progMain = `\
+function reloadProg(){	
+var progAlgos = `\
 order = ${forder.value}
 nlen = ${nlength.value}
 ensemble = ${ensemble.value}
+
 lms = adflms.LMSalgorithm(order)
-lms.mu = ${mu1.value}
-lms._name = "LMS (" + str(lms.mu)  + ")"
 lms2 = adflms.LMSalgorithm(order)
-lms2.mu = ${mu2.value}
-lms2._name = "LMS (" + str(lms2.mu)  + ")"
 nlms = adfnlms.NLMSalgorithm(order)
 rls = adfrls.RLSalgorithm(order)
+
+lms.mu = ${mu1.value}
+lms._name = "LMS (" + str(lms.mu)  + ")"
+lms2.mu = ${mu2.value}
+lms2._name = "LMS (" + str(lms2.mu)  + ")"
 algos = [nlms, lms, lms2, rls]
 
 unknown = unknownLTV.Unknown(order)
 unknown.arcoef = ${arcoef.value}
 unknown.snr = ${snr.value} # SNR in dB
 unknown.changetime = ${changetime.value} # SNR in dB
-`
-	editarea.textContent = progMain;
+`;
+	return progAlgos;
+}
+
+function initProg(){
+	program = reloadProg();
+	editarea.textContent = program;
 }
 
 function initProg2(){
@@ -56,7 +62,8 @@ function readProg(){
 
 function writeProg(){
 	const fs = require('fs');
-	let text = editarea.value
+	//let text = editarea.value
+	let text = reloadProg();
 	let prog = progHeader + text + progLast;
 	fs.writeFileSync('py/z1.py', prog);
 }
