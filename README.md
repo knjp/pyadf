@@ -1,2 +1,3 @@
 # pyadf
-ADF on Python
+Test implementation of Adaptive digital filters (**ADF**) on *Python* with the *Electron*.
+
