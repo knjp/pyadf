@@ -1,6 +1,6 @@
 import numpy as np
 
-class spconv:
+class SPconv:
     def __init__(self, order):
         self._order = order
         self._coef = np.zeros(order)

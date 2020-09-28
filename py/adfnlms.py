@@ -1,7 +1,7 @@
 import adfalgorithm as algo
 import numpy as np
 
-class nlmsalgorithm(algo.adfalgorithm):
+class NLMSalgorithm(algo.ADFalgorithm):
     def __init__(self, order):
         super().__init__(order)
         self._alpha = 1.0

@@ -6,9 +6,9 @@ PythonShell.defaultOptions = { pythonOptions: ['-u'] };
 function pytest(){
 	let options = {
 		puthonOptions: ['-u'],
-		args: [input.value]
+	//	args: [input.value]
 	}
-	let pyshell = new PythonShell('./py/sptest3.py', options);
+	let pyshell = new PythonShell('./py/z1.py', options);
  
 	// sends a message to the Python script via stdin
 	pyshell.send('John');
@@ -33,6 +33,7 @@ function pytest(){
 
 btn.addEventListener('click', ()=>{
 	tarea.textContent = '';
+	writeProg();
 	pytest();
 });
 
@@ -42,3 +43,12 @@ quit.addEventListener('click', function(clickEvent) {
 	window.close()
 })
 
+
+function openChildWindow(){
+	const url = 'edit.html';
+	window.open(url, '', 'width=800,height=800')
+}
+
+child.addEventListener('click', function(clickEvent) {
+	openChildWindow()
+})

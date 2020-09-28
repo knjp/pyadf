@@ -1,7 +1,7 @@
 from abc import ABCMeta, abstractmethod
 import numpy as np
 
-class adfalgorithm(metaclass=ABCMeta):
+class ADFalgorithm(metaclass=ABCMeta):
     def __init__(self, order):
         self._order = order
         self._wcoef = np.zeros(self._order)

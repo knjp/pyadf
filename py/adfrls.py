@@ -1,7 +1,7 @@
 import numpy as np
 import adfalgorithm 
 
-class rlsalgorithm(adfalgorithm.adfalgorithm):
+class RLSalgorithm(adfalgorithm.ADFalgorithm):
     def __init__(self, order):
         super().__init__(order)
         self._lambda = 0.95

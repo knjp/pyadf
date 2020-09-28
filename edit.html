@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>Calling Python from Electron!</title>
+    <meta charset="UTF-8">
+    <title>Parameters</title>
 </head>
 <body>
     <h1> Edit Program Test</h1>
@@ -18,15 +18,23 @@
     mu 1: <input id="mu1" value="0.001"></input>
     mu 2: <input id="mu2" value="0.005"></input>
     <BR>
-	<input id="btn" type="button" value="Run"></input>
-	<br>
-	<b> Output: </b> <br>
-	<textarea id="tarea" rows="10" cols="100"></textarea><br>
-	<input id="quit" type="button" value="Quit"></input>
-	<br>
+    <BR>
+    <BR>
+    <textarea id="editarea" rows="10" cols="100"></textarea><br>
+    <input id="btnedit" type="button" value="Read"></input>
+    <input id="btnwrite" type="button" value="Write"></input>
+    <input id="btnclose" type="button" value="Close"></input>
 
-    <script src = "./param.js")></script>
-	<script src="./renderer.js"></script>
+    <script>
+        require('./edit.js')
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script>
+
+        new Vue({
+            el: '#app'
+        })
+
+</script>
 </body>
 </html>
-

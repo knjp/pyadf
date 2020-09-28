@@ -4,7 +4,7 @@ matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 from scipy.fftpack import fft, fftfreq
 
-class spmisc:
+class SPmisc:
     def __init__(self):
         self.data = []
 
