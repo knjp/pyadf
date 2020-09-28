@@ -6,7 +6,7 @@ PythonShell.defaultOptions = { pythonOptions: ['-u'] };
 function pytest(){
 	let options = {
 		puthonOptions: ['-u'],
-		args: [input.value]
+	//	args: [input.value]
 	}
 	let pyshell = new PythonShell('./py/z1.py', options);
  
@@ -33,6 +33,7 @@ function pytest(){
 
 btn.addEventListener('click', ()=>{
 	tarea.textContent = '';
+	writeProg();
 	pytest();
 });
 

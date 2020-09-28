@@ -5,18 +5,27 @@
 	<title>Calling Python from Electron!</title>
 </head>
 <body>
-	<h1>Electron for ADF!</h1>
-	<p>Click to run the script </code>.</p>
-	<input id="input" value="2"></input>
+    <h1> Edit Program Test</h1>
+	Length: <input id="nlength" value="2000"></input>
+	Ensemble: <input id="ensemble" value="20"></input>
+    <BR><BR>
+    Change Time: <input id="changetime" value="1000"></input>
+    AR Coef: <input id="arcoef" value="0.9"></input>
+    <BR><BR>
+	Filter Order: <input id="forder" value="51"></input>
+	SNR (in dB): <input id="snr" value="30"></input>
+    <BR><BR>
+    mu 1: <input id="mu1" value="0.001"></input>
+    mu 2: <input id="mu2" value="0.005"></input>
+    <BR>
 	<input id="btn" type="button" value="Run"></input>
 	<br>
-	<button type="button" id="child">Parameters</button>
-	</br><br><br>
 	<b> Output: </b> <br>
 	<textarea id="tarea" rows="10" cols="100"></textarea><br>
 	<input id="quit" type="button" value="Quit"></input>
 	<br>
 
+    <script src = "./param.js")></script>
 	<script src="./renderer.js"></script>
 </body>
 </html>
