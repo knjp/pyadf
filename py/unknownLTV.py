@@ -48,12 +48,12 @@ class Unknown(adfunknown.ADFunknown):
         self._changetime = value
 
     
-    def initunknown(self):
+    def initunknown(self, initlength):
         self._conv = spconv.SPconv(self._order)
         self._conv.coef = self._unknown1
         SNRlinear = 10 ** (self._snr/10)
         npower = self._sigmax ** 2/SNRlinear
-        self._time = 1 - 2*self._order
+        self._time = 1 - initlength
         self._sigmanoise = np.sqrt(npower)
 
     def input(self):

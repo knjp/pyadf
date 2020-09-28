@@ -6,7 +6,7 @@ class ADFunknown(metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def initunknown(self):
+    def initunknown(self, initlength):
         pass
 
     @abstractmethod

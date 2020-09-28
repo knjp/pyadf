@@ -10,13 +10,18 @@ class ADFsimulation:
         self._nensemble = ensemble
         #self._unknown = spunknown.spunknown(self._order)
         self._unknown = unknown
+        self._initlen = 2*self._order
+
+    @property
+    def initlen(self):
+        return self._initlen
 
     def epoch(self):
-        self._unknown.initunknown()
+        self._unknown.initunknown(self._initlen)
         for na in range(self._algonum):
             self._algos[na].initalgorithm()
 
-        for n in range(2*self._order):
+        for n in range(self._initlen):
             input = self._unknown.input()
             d = self._unknown.output(input)
             for na in range(self._algonum):
