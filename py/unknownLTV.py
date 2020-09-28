@@ -53,6 +53,7 @@ class Unknown(adfunknown.ADFunknown):
         self._conv.coef = self._unknown1
         SNRlinear = 10 ** (self._snr/10)
         npower = self._sigmax ** 2/SNRlinear
+        self._time = 1 - 2*self._order
         self._sigmanoise = np.sqrt(npower)
 
     def input(self):
